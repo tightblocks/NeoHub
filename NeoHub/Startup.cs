@@ -8,6 +8,7 @@ using NeoHub.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using NeoHub.Actors;
 using NeoHub.BlockTools;
 
 namespace NeoHub
@@ -58,11 +59,7 @@ namespace NeoHub
                 app.UseHsts();
             }
 
-            Program.NeoSystem.ActorSystem.ActorOf(BlockPersister.Props(
-                Program.NeoSystem.Blockchain,
-                netSettings.Value.Net));
-
-            Program.NeoSystem.ActorSystem.ActorOf()
+            Program.NeoSystem.ActorSystem.ActorOf(Logger.Props(Program.NeoSystem.Blockchain));
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

@@ -31,8 +31,6 @@ namespace NeoHub
             NeoSystem = new NeoSystem(store);
             NeoSystem.StartNode(NeoSettings.Default.NodePort, NeoSettings.Default.WsPort);
 
-            
-
             CreateWebHostBuilder(args).Build().Run();
         }
     }
